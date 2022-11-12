@@ -29,7 +29,7 @@ public class JumperDemo extends JPanel implements ActionListener, KeyListener{
 	}
 	
 	public void run(){
-		window = new JFrame("JUMPER!!");
+		window = new JFrame("ACCELERANDO!!");
 		window.addKeyListener(this);
 		window.add(this);
 		window.getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -39,9 +39,9 @@ public class JumperDemo extends JPanel implements ActionListener, KeyListener{
 		timer = new Timer(1000 / 60, this);
 		
 		
-		platforms.add(new Platform(300, 450, 200, 50));
+		//platforms.add(new Platform(300, 450, 200, 50));
 		platforms.add(new Platform(500, 350, 200, 50));
-		platforms.add(new Platform(300, 250, 200, 50));
+		//platforms.add(new Platform(300, 250, 200, 50));
 		platforms.add(new Platform(100, 150, 200, 50));
 		
 		timer.start();
@@ -100,15 +100,19 @@ public class JumperDemo extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		
-		if(e.getKeyCode() == KeyEvent.VK_LEFT){
+		if(e.getKeyCode() == KeyEvent.VK_A){
 			p1.left = true;
 		}
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+		if(e.getKeyCode() == KeyEvent.VK_D){
 			p1.right = true;
 		}
 
 		if(e.getKeyCode() == KeyEvent.VK_SPACE){
 			p1.jump();
+		}
+				
+		if(e.getKeyCode() == KeyEvent.VK_W){
+			p1.tech();
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
@@ -120,10 +124,10 @@ public class JumperDemo extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getKeyCode() == KeyEvent.VK_LEFT){
+		if(e.getKeyCode() == KeyEvent.VK_A){
 			p1.left = false;
 		}
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+		if(e.getKeyCode() == KeyEvent.VK_D){
 			p1.right = false;
 		}
 	}
@@ -202,6 +206,13 @@ class Player{
 		if(canJump){
 			yVelocity -= jumpPower;
 			canJump = false;
+		}
+	}
+	
+	public void tech(){
+		if(canJump){
+			y = y-100;
+			
 		}
 	}
 	
